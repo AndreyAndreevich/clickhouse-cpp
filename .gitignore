@@ -272,3 +272,6 @@ BUCKAROO_DEPS
 
 # Visual Studio Code
 /.vscode/
+
+# CLion
+cmake-build-*
