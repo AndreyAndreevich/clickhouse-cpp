@@ -58,12 +58,14 @@ static ColumnRef CreateTerminalColumn(const TypeAst& ast) {
     case Type::Decimal64:
         return std::make_shared<ColumnDecimal>(18, ast.elements.front().value);
     case Type::Decimal128:
-        if (ast.elements.size() == 2) {
-            return std::make_shared<ColumnDecimal>(ast.elements.front().value, ast.elements.back().value);
-        } else if (ast.elements.size() == 1) {
+        switch (ast.elements.size()) {
+        case 1:
             return std::make_shared<ColumnDecimal>(38, ast.elements.front().value);
+        case 2:
+            return std::make_shared<ColumnDecimal>(ast.elements.front().value, ast.elements.back().value);
+        default:
+            return nullptr;
         }
-
     default:
         return nullptr;
     }
