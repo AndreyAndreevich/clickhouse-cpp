@@ -8,7 +8,7 @@ C++ client for [Yandex ClickHouse](https://clickhouse.yandex/)
 * Array(T)
 * Date
 * DateTime
-* Decimal32, Decimal64, Decimal128
+* Decimal32, Decimal64, Decimal128 (Decimal128 not supported for MSVC)
 * Enum8, Enum16
 * FixedString(N)
 * Float32, Float64

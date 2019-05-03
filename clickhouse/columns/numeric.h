@@ -1,6 +1,7 @@
 #pragma once
 
 #include "column.h"
+#include "../types/int128_type.h"
 
 namespace clickhouse {
 
@@ -57,7 +58,7 @@ using ColumnInt8    = ColumnVector<int8_t>;
 using ColumnInt16   = ColumnVector<int16_t>;
 using ColumnInt32   = ColumnVector<int32_t>;
 using ColumnInt64   = ColumnVector<int64_t>;
-using ColumnInt128  = ColumnVector<__int128>;
+using ColumnInt128  = ColumnVector<int128_t>;
 
 using ColumnFloat32 = ColumnVector<float>;
 using ColumnFloat64 = ColumnVector<double>;

@@ -5,6 +5,8 @@
 #include <string>
 #include <vector>
 
+#include "int128_type.h"
+
 namespace clickhouse {
 
 using TypeRef = std::shared_ptr<class Type>;
@@ -197,10 +199,12 @@ inline TypeRef Type::CreateSimple<int64_t>() {
     return TypeRef(new Type(Int64));
 }
 
+#ifndef _MSC_VER
 template <>
-inline TypeRef Type::CreateSimple<__int128>() {
+inline TypeRef Type::CreateSimple<int128_t>() {
     return TypeRef(new Type(Int128));
 }
+#endif
 
 template <>
 inline TypeRef Type::CreateSimple<uint8_t>() {

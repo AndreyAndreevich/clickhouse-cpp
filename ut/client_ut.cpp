@@ -437,7 +437,7 @@ TEST_P(ClientCase, Decimal) {
 
         ASSERT_EQ(5u, b.GetRowCount());
 
-        auto int128_to_string = [](Int128 value) {
+        auto int128_to_string = [](int128_t value) {
             std::string result;
             const bool sign = value >= 0;
 

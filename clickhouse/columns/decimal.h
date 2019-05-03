@@ -1,10 +1,9 @@
 #pragma once
 
 #include "column.h"
+#include "../types/int128_type.h"
 
 namespace clickhouse {
-
-using Int128 = __int128;
 
 /**
  * Represents a column of decimal type.
@@ -14,10 +13,10 @@ class ColumnDecimal : public Column {
 public:
     ColumnDecimal(size_t precision, size_t scale);
 
-    void Append(const Int128& value);
+    void Append(const int128_t& value);
     void Append(const std::string& value);
 
-    Int128 At(size_t i) const;
+    int128_t At(size_t i) const;
 
 public:
     void Append(ColumnRef column) override { data_->Append(column); }

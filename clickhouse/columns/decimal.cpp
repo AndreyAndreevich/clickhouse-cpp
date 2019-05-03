@@ -14,7 +14,7 @@ ColumnDecimal::ColumnDecimal(size_t precision, size_t scale) : Column(Type::Crea
     }
 }
 
-void ColumnDecimal::Append(const Int128& value) {
+void ColumnDecimal::Append(const int128_t& value) {
     if (data_->Type()->GetCode() == Type::Int32) {
         data_->As<ColumnInt32>()->Append(static_cast<ColumnInt32::DataType>(value));
     } else if (data_->Type()->GetCode() == Type::Int64) {
@@ -25,7 +25,7 @@ void ColumnDecimal::Append(const Int128& value) {
 }
 
 void ColumnDecimal::Append(const std::string &value) {
-    Int128 int_value = 0;
+    int128_t int_value = 0;
     auto c = value.begin();
     bool sign = true;
 
@@ -52,11 +52,11 @@ void ColumnDecimal::Append(const std::string &value) {
     Append(sign ? int_value : -int_value);
 }
 
-Int128 ColumnDecimal::At(size_t i) const {
+int128_t ColumnDecimal::At(size_t i) const {
     if (data_->Type()->GetCode() == Type::Int32) {
-        return static_cast<Int128>(data_->As<ColumnInt32>()->At(i));
+        return static_cast<int128_t>(data_->As<ColumnInt32>()->At(i));
     } else if (data_->Type()->GetCode() == Type::Int64) {
-        return static_cast<Int128>(data_->As<ColumnInt64>()->At(i));
+        return static_cast<int128_t>(data_->As<ColumnInt64>()->At(i));
     } else {
         return data_->As<ColumnInt128>()->At(i);
     }
