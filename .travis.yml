@@ -53,5 +53,6 @@ script:
   - cmake ..
   - cmake --build .
   - if [[ "$TRAVIS_OS_NAME" == "linux" ]]; then ./ut/clickhouse-cpp-ut ; fi
+  - if [[ "$TRAVIS_OS_NAME" == "linux" ]]; then ./tests/simple/simple-test ; fi
   - if [[ "$TRAVIS_OS_NAME" == "osx" ]]; then ./ut/clickhouse-cpp-ut --gtest_filter='-Client/*' ; fi
   - if [[ "$TRAVIS_OS_NAME" == "windows" ]]; then ./ut/Debug/clickhouse-cpp-ut.exe --gtest_filter='-Client/*' ; fi

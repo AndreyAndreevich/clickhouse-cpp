@@ -237,7 +237,7 @@ inline void CancelableExample(Client& client) {
     client.Execute("DROP TABLE test.client");
 }
 
-inline void ExecptionExample(Client& client) {
+inline void ExceptionExample(Client& client) {
     /// Create a table.
     client.Execute("CREATE TABLE IF NOT EXISTS test.exceptions (id UInt64, name String) ENGINE = Memory");
     /// Expect failing on table creation.
@@ -313,7 +313,7 @@ static void RunTests(Client& client) {
     CancelableExample(client);
     DateExample(client);
     EnumExample(client);
-    ExecptionExample(client);
+    ExceptionExample(client);
     GenericExample(client);
     NullableExample(client);
     NumbersExample(client);
