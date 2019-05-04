@@ -3,7 +3,51 @@
 
 using namespace clickhouse;
 
-// TODO: add tests for Decimal column types.
+TEST(TypeParserCase, ParseDecimal) {
+    TypeAst ast;
+    TypeParser("Decimal").Parse(&ast);
+
+    ASSERT_EQ(ast.meta, TypeAst::Terminal);
+    ASSERT_EQ(ast.name, "Decimal");
+    ASSERT_EQ(ast.code, Type::Decimal128);
+}
+
+TEST(TypeParserCase, ParseDecimal32) {
+    TypeAst ast;
+    TypeParser("Decimal32").Parse(&ast);
+
+    ASSERT_EQ(ast.meta, TypeAst::Terminal);
+    ASSERT_EQ(ast.name, "Decimal32");
+    ASSERT_EQ(ast.code, Type::Decimal32);
+}
+
+TEST(TypeParserCase, ParseDecimal64) {
+    TypeAst ast;
+    TypeParser("Decimal64").Parse(&ast);
+
+    ASSERT_EQ(ast.meta, TypeAst::Terminal);
+    ASSERT_EQ(ast.name, "Decimal64");
+    ASSERT_EQ(ast.code, Type::Decimal64);
+}
+
+TEST(TypeParserCase, ParseDecimal128) {
+    TypeAst ast;
+    TypeParser("Decimal128").Parse(&ast);
+
+    ASSERT_EQ(ast.meta, TypeAst::Terminal);
+    ASSERT_EQ(ast.name, "Decimal128");
+    ASSERT_EQ(ast.code, Type::Decimal128);
+}
+
+TEST(TypeParserCase, ParseDecimalWithScale) {
+    TypeAst ast;
+    TypeParser("Decimal32(5)").Parse(&ast);
+
+    ASSERT_EQ(ast.meta, TypeAst::Terminal);
+    ASSERT_EQ(ast.name, "Decimal32");
+    ASSERT_EQ(ast.code, Type::Decimal32);
+    ASSERT_EQ(ast.elements.front().value, 5U);
+}
 
 TEST(TypeParserCase, ParseTerminals) {
     TypeAst ast;
