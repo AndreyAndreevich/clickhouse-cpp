@@ -46,8 +46,17 @@ TEST(TypesCase, EnumTypes) {
     ASSERT_EQ((++enum16->As<EnumType>()->BeginValueToName())->second, "Red");
 }
 
-TEST(TypesCase, DecimalCreatingError) {
+TEST(TypesCase, DecimalTypes) {
     ASSERT_THROW(Type::CreateDecimal(0,1), std::logic_error);
     ASSERT_THROW(Type::CreateDecimal(39,1), std::logic_error);
     ASSERT_THROW(Type::CreateDecimal(18,19), std::logic_error);
+
+    auto decimal32 = Type::CreateDecimal(9,3);
+    ASSERT_EQ(decimal32->GetName(), "Decimal32(3)");
+
+    auto decimal64 = Type::CreateDecimal(18,12);
+    ASSERT_EQ(decimal64->GetName(), "Decimal64(12)");
+
+    auto decimal128 = Type::CreateDecimal(38,25);
+    ASSERT_EQ(decimal128->GetName(), "Decimal128(25)");
 }
