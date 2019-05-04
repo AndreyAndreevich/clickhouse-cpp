@@ -125,7 +125,12 @@ DecimalType::DecimalType(size_t precision, size_t scale)
       }()),
       precision_(precision),
       scale_(scale) {
-    // TODO: assert(precision <= 38 && precision > 0);
+    if (precision == 0 || precision > 38) {
+        throw std::logic_error("Precision must belong to the gap [1; 38], precision = " + std::to_string(precision));
+    }
+    if (scale > precision) {
+        throw std::logic_error("Scale must be less or equal precision, scale = " + std::to_string(scale));
+    }
 }
 
 std::string DecimalType::GetName() const {

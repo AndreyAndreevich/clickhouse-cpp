@@ -37,9 +37,6 @@ static std::vector<uint64_t> MakeUUIDs() {
          0x3507213c178649f9llu, 0x9faf035d662f60aellu};
 }
 
-
-// TODO: add tests for ColumnDecimal.
-
 TEST(ColumnsCase, NumericInit) {
     auto col = std::make_shared<ColumnUInt32>(MakeNumbers());
 
@@ -162,4 +159,8 @@ TEST(ColumnsCase, UUIDSlice) {
     ASSERT_EQ(sub->Size(), 2u);
     ASSERT_EQ(sub->At(0), UInt128(0x84b9f24bc26b49c6llu, 0xa03b4ab723341951llu));
     ASSERT_EQ(sub->At(1), UInt128(0x3507213c178649f9llu, 0x9faf035d662f60aellu));
+}
+
+TEST(ColumnsCase, Decimal) {
+    // TODO: add tests for ColumnDecimal.
 }

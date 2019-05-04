@@ -46,6 +46,8 @@ TEST(TypesCase, EnumTypes) {
     ASSERT_EQ((++enum16->As<EnumType>()->BeginValueToName())->second, "Red");
 }
 
-TEST(TypesCase, DecimalTypes) {
-    // TODO: implement this test.
+TEST(TypesCase, DecimalCreatingError) {
+    ASSERT_THROW(Type::CreateDecimal(0,1), std::logic_error);
+    ASSERT_THROW(Type::CreateDecimal(39,1), std::logic_error);
+    ASSERT_THROW(Type::CreateDecimal(18,19), std::logic_error);
 }
